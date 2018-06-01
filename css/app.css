@@ -72,7 +72,8 @@ h1 {
 }
 
 .deck .open {
-	transform: rotateY(0);
+	transform: rotateY(360deg);
+	transition: transform 1s ease;
 	background-color: #02b3e4;
 	cursor: default;
 }
@@ -105,22 +106,6 @@ h1 {
 	float: right;
 	cursor: pointer;
 }
-
-/*.modal {
-	position: fixed;
-	font-family: Arial, Helvetica, sans-serif;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: rgba(0,0,0,0.8);
-	z-index: 99999;
-	opacity:0;
-	-webkit-transition: opacity 400ms ease-in;
-	-moz-transition: opacity 400ms ease-in;
-	transition: opacity 400ms ease-in;
-	pointer-events: none;
-}*/
 
 .modal {
 	display: none;
@@ -184,4 +169,29 @@ h1 {
 	cursor: pointer;
 	font-size: 16px;
 	margin-top: 10px;
+}
+
+.clicked {
+	transform: rotateY(180deg);
+	transition: transform 1s ease;
+}
+
+@keyframes shake {
+ from {
+    transform: translate(-10px);
+ }
+ to {
+   transform: translate(10px);
+ }
+
+}
+
+.matched {
+	background-color: #02ccba;
+	transform: scale(0.75, 0.75) !important;
+	transition: transform 0.1s !important;
+}
+
+.not-matched {
+	animation: shake 0.2s cubic-bezier(.36,.07,.19,.97);
 }

@@ -13,6 +13,7 @@
  const modalClose = document.querySelector('.close');
  const playAgain = document.querySelector('.playAgain');
  const winningStat = document.querySelector('.winningStat');
+ const timeInfo = document.querySelector('.timeInfo');
  let timer;
 
 /*
@@ -65,8 +66,6 @@ deck.addEventListener('click', function(evt){
 		flipToShow(evt.target);
 		addCardToList(evt.target);
 
-
-
 		if(openCards.length > 1){
 
 			const currentCard = openCards[openCards.length-1];
@@ -78,12 +77,12 @@ deck.addEventListener('click', function(evt){
 				} else {
 					setTimeout(function(){
 						flipToHide(previousCard, currentCard);
-					}, 500);
+					}, 1000);
+
 					openCards.splice(openCards.length-2);
+
 				}
 			}
-
-
 		}
 
 		numberOfMoves++;
@@ -93,9 +92,11 @@ deck.addEventListener('click', function(evt){
 	if(openCards.length == 16) {
 		stopTimer();
 		modal.style.display = 'block';
+
 		winningStat.textContent = "With " + numberOfMoves + " Moves and " +
 									document.querySelectorAll('.fa-star').length +
-									" Stars.";
+									" Stars";
+		timeInfo.textContent =  "Time to Complete: " + getTimeToComplete();
 	}
 
 	evaluateStarLevel();
@@ -112,20 +113,33 @@ playAgain.addEventListener('click', function(){
 	reset();
 });
 
+modal.addEventListener('click', function(evt){
+	if(evt.target.nodeName === 'DIV'){
+		modal.style.display = 'none';
+	}
+});
+
 function addCardToList(card){
 	openCards.push(card);
 }
 
 function flipToShow(card){
-	card.classList.add('open');
-	card.classList.add('show');
+	card.setAttribute("class", "card open show");
+
 }
 
 function flipToHide(previousCard, currentCard){
-	previousCard.classList.remove('open');
-	previousCard.classList.remove('show');
-	currentCard.classList.remove('open');
-	currentCard.classList.remove('show');
+	previousCard.classList.add('not-matched');
+	currentCard.classList.add('not-matched');
+	previousCard.style.backgroundColor = '#c52b2b';
+	currentCard.style.backgroundColor = '#c52b2b';
+	setTimeout(function(){
+		previousCard.style.cssText = "";
+		currentCard.style.cssText = "";
+		previousCard.setAttribute("class", "card");
+		currentCard.setAttribute("class", "card");
+	}, 500);
+
 }
 
 function isLastCardMatched(card){
@@ -133,8 +147,16 @@ function isLastCardMatched(card){
 }
 
 function matched(previousCard, currentCard) {
-	previousCard.classList.add('match');
-	currentCard.classList.add('match');
+
+	currentCard.classList.add('matched');
+	previousCard.classList.add('matched');
+
+	// previousCard.classList.add('match');
+	// currentCard.classList.add('match');
+	setTimeout(function(){
+		currentCard.setAttribute("class", "card open show match");
+		previousCard.setAttribute("class", "card open show match");
+	}, 300);
 }
 
 function reset(){
@@ -176,6 +198,16 @@ function evaluateStarLevel() {
 	} else if(numberOfMoves >= 30) {
 		stars[1].classList.replace('fa-star', 'fa-star-o');
 	}
+}
+
+function getTimeToComplete(){
+	const time = clock.textContent.split(":");
+	const minute = Number(time[0]);
+	const second = Number(time[1]);
+
+	return minute === 0? second + "  Seconds." :
+	minute + "  Minutes and " + second  + " Seconds";
+
 }
 
 /*
