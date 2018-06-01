@@ -84,6 +84,7 @@ h1 {
 
 .deck .match {
 	background-color: #02ccba;
+	pointer-events: none;
 }
 
 .score-panel {
@@ -177,19 +178,18 @@ h1 {
 }
 
 @keyframes shake {
- from {
-    transform: translate(-10px);
- }
- to {
-   transform: translate(10px);
- }
-
+	 from {
+	    transform: translate(-10px);
+	 }
+	 to {
+	   transform: translate(10px);
+	 }
 }
 
 .matched {
 	background-color: #02ccba;
 	transform: scale(0.75, 0.75) !important;
-	transition: transform 0.1s !important;
+	transition: transform 0s cubic-bezier(.36,.07,.19,.97) !important;
 }
 
 .not-matched {
