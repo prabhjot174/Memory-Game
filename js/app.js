@@ -1,4 +1,4 @@
-/*
+/**
  * Variable declarations
  */
  const cards = document.querySelectorAll('.card');
@@ -18,7 +18,7 @@
 
  displayCards();
 
-/*
+/**
  * @description Display the cards on the page
  *   			shuffle the list of cards using the provided "shuffle" method below
  *   			loop through each card and create its HTML
@@ -40,7 +40,7 @@
  }
 
 
-/*
+/**
  * @description Shuffle function from http://stackoverflow.com/a/2450976
  * @param {array} array
  */
@@ -58,7 +58,7 @@ function shuffle(array) {
     return array;
 }
 
-/*
+/**
  * @description when a card is clicked, its added to a list of open cards
  * 				card is flipped to display the symbol and checked if there is already a matching card opened
  * 				if there is no matching card opened current and previous cards are both turned down
@@ -111,20 +111,20 @@ deck.addEventListener('click', function(evt){
 	evaluateStarLevel();
 });
 
-/*
+/**
  * @ description clicking on the restart button re-shuffles the deck
  *				 and resets the moves and timer
  */
 restart.addEventListener('click', reset);
 
-/*
+/**
  * @description clicking on the close button makes the modal window go away
  */
 modalClose.addEventListener('click', function(){
 	modal.style.display = 'none';
 });
 
-/*
+/**
  * @description clicking on the play again button calls the reset function and hides the modal window
  */
 playAgain.addEventListener('click', function(){
@@ -132,7 +132,7 @@ playAgain.addEventListener('click', function(){
 	reset();
 });
 
-/*
+/**
  * @description clicking anywhere outside the modal window also hides the window
  */
 modal.addEventListener('click', function(evt){
@@ -141,7 +141,7 @@ modal.addEventListener('click', function(evt){
 	}
 });
 
-/*
+/**
  * @description adds the card to the list of open cards
  * @param {HTMLElement} card
  */
@@ -149,7 +149,7 @@ function addCardToList(card){
 	openCards.push(card);
 }
 
-/*
+/**
  * @description flips the card to display the symbol
  * @param {HTMLElement} card
  */
@@ -158,7 +158,7 @@ function flipToShow(card){
 
 }
 
-/*
+/**
  * @description flips the card to hide
  * @param {HTMLElement} previousCard
  * @param {HTMLElement} currentCard
@@ -177,7 +177,7 @@ function flipToHide(previousCard, currentCard){
 
 }
 
-/*
+/**
  * @description checks to see if the last opened card matches the current card
  * @param {HTMLElement} card
  */
@@ -185,7 +185,7 @@ function isLastCardMatched(card){
 	return card.classList.contains('match');
 }
 
-/*
+/**
  * @description if the cards do match it locks them into open position
  * @param {HTMLElement} previousCard
  * @param {HTMLElement} currentCard
@@ -200,7 +200,7 @@ function matched(previousCard, currentCard) {
 	}, 500);
 }
 
-/*
+/**
  * @description resets the deck and re-shuffles the cards
  */
 function reset(){
@@ -212,7 +212,7 @@ function reset(){
 	clock.textContent = "00:00";
 }
 
-/*
+/**
  * @description starts the timer as soon as user begins playing
  */
 const startTimer = function(){
@@ -234,14 +234,14 @@ const startTimer = function(){
 
 }
 
-/*
+/**
  * @description stops the timer
  */
 function stopTimer(){
 	clearInterval(timer);
 }
 
-/*
+/**
  * @description evaluates user performance and takes stars off with poor performance
  */
 function evaluateStarLevel() {
@@ -253,7 +253,7 @@ function evaluateStarLevel() {
 	}
 }
 
-/*
+/**
  * @description returns the time taken to complete the game
  */
 function getTimeToComplete(){
