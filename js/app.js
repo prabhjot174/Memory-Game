@@ -15,6 +15,7 @@
  let openCards = [];
  let moves = document.querySelector('.moves');
  let numberOfMoves = 0;
+ let numberOfClicks = 0;
 
  displayCards();
 
@@ -71,10 +72,10 @@ deck.addEventListener('click', function(evt){
 		startTimer();
 	}
 
-	if(evt.target.nodeName === 'LI'){
+	if(evt.target.nodeName === 'LI' && numberOfClicks < 2){
 		flipToShow(evt.target);
 		addCardToList(evt.target);
-
+		numberOfClicks++;
 		if(openCards.length > 1){
 
 			const currentCard = openCards[openCards.length-1];
@@ -93,7 +94,6 @@ deck.addEventListener('click', function(evt){
 				}
 			}
 		}
-
 		numberOfMoves++;
 		moves.textContent = numberOfMoves;
 	}
@@ -174,7 +174,7 @@ function flipToHide(previousCard, currentCard){
 		previousCard.setAttribute("class", "card");
 		currentCard.setAttribute("class", "card");
 	}, 500);
-
+	numberOfClicks = 0;
 }
 
 /**
@@ -198,6 +198,7 @@ function matched(previousCard, currentCard) {
 		currentCard.setAttribute("class", "card open show match");
 		previousCard.setAttribute("class", "card open show match");
 	}, 500);
+	numberOfClicks = 0;
 }
 
 /**
