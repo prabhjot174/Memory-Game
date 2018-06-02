@@ -75,7 +75,7 @@ h1 {
 	transform: rotateY(360deg);
 	transition: transform 1s ease;
 	background-color: #02b3e4;
-	cursor: default;
+	pointer-events: none;
 }
 
 .deck .show {
