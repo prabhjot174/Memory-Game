@@ -8,9 +8,9 @@
  const stars = document.querySelectorAll('.fa-star');
  const modal = document.querySelector('.modal');
  const modalClose = document.querySelector('.close');
- const playAgain = document.querySelector('.playAgain');
- const winningStat = document.querySelector('.winningStat');
- const timeInfo = document.querySelector('.timeInfo');
+ const playAgain = document.querySelector('.play-again');
+ const winningStat = document.querySelector('.winning-stat');
+ const timeInfo = document.querySelector('.time-info');
  let timer;
  let openCards = [];
  let moves = document.querySelector('.moves');
@@ -102,10 +102,8 @@ deck.addEventListener('click', function(evt){
 		stopTimer();
 		modal.style.display = 'block';
 
-		winningStat.textContent = "With " + numberOfMoves + " Moves and " +
-									document.querySelectorAll('.fa-star').length +
-									" Stars";
-		timeInfo.textContent =  "Time to Complete: " + getTimeToComplete();
+		winningStat.textContent = `With ${numberOfMoves} Moves and ${document.querySelectorAll('.fa-star').length} Stars`;
+		timeInfo.textContent =  `Time to Complete: ${getTimeToComplete()}`;
 	}
 
 	evaluateStarLevel();
@@ -262,7 +260,7 @@ function getTimeToComplete(){
 	const minute = Number(time[0]);
 	const second = Number(time[1]);
 
-	return minute === 0? second + "  Seconds." :
-	minute + "  Minutes and " + second  + " Seconds";
+	return minute === 0? `${second} Seconds.` :
+			`${minute} Minutes and ${second} Seconds`;
 
 }

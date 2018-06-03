@@ -33,7 +33,7 @@ h1 {
 	align-items: center;
 }
 
-.timerLabel {
+.timer-label {
 	display: flex;
 	justify-content: center;
 }
@@ -124,7 +124,7 @@ h1 {
 	padding: 20px;
 }
 
-.modalContent {
+.modal-content {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -157,11 +157,11 @@ h1 {
 	color: #02ccba;
 }
 
-.winMessage {
+.win-message {
 	font-weight: 500;
 }
 
-.playAgain {
+.play-again {
 	width: 100px;
 	height: 50px;
 	color: white;
